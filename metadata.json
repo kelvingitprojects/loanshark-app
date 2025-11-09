@@ -1,0 +1,5 @@
+{
+  "name": "Loanshark App",
+  "description": "A modular, markup-based loan tracking tool designed to log informal lending transactions and monitor repayment progress. It allows users to record borrower details, calculate total repayment amounts with a fixed markup, and track how much has been repaid over time.",
+  "requestFramePermissions": []
+}

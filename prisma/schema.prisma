@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Loan {
+  id               String      @id @default(uuid())
+  borrowerName     String
+  loanAmount       Float
+  markupPercentage Float
+  totalOwed        Float
+  createdAt        DateTime    @default(now())
+  repayments       Repayment[]
+}
+
+model Repayment {
+  id      String   @id @default(uuid())
+  amount  Float
+  date    DateTime @default(now())
+  loanId  String
+  loan    Loan     @relation(fields: [loanId], references: [id], onDelete: Cascade)
+
+  @@index([loanId])
+}
+
+// New models to support borrower role and loan request approvals
+
+model Borrower {
+  id             String   @id @default(uuid())
+  firstName      String
+  surname        String
+  phoneNumber    String
+  whatsappNumber String?
+  csrfToken      String   // simple token used to validate mutations from borrower client
+  createdAt      DateTime @default(now())
+  requests       LoanRequest[]
+
+  @@index([phoneNumber])
+}
+
+
+model LoanRequest {
+  id          String        @id @default(uuid())
+  borrowerId  String
+  borrower    Borrower      @relation(fields: [borrowerId], references: [id], onDelete: Cascade)
+  amount      Float
+  status      String        @default("PENDING")
+  adminNote   String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  decidedAt   DateTime?
+  auditLogs   AuditLog[]
+
+  @@index([borrowerId])
+  @@index([status])
+}
+
+model AuditLog {
+  id            String      @id @default(uuid())
+  loanRequestId String
+  loanRequest   LoanRequest @relation(fields: [loanRequestId], references: [id], onDelete: Cascade)
+  action        String      // "APPROVE" or "DECLINE"
+  note          String?
+  adminId       String?
+  createdAt     DateTime    @default(now())
+
+  @@index([loanRequestId])
+}
