@@ -15,7 +15,10 @@ import BorrowerDashboard from './pages/BorrowerDashboard';
 
 // FIX: Object literal may only specify known properties, and 'uri' does not exist in type 'Options'.
 // The client now uses `createHttpLink` to set up the connection to the GraphQL server.
-const httpLink = createHttpLink({ uri: '/graphql' });
+// In production on Vercel, set `VITE_GRAPHQL_URL` to your Render backend URL.
+const httpLink = createHttpLink({
+  uri: (import.meta as any).env?.VITE_GRAPHQL_URL || '/graphql'
+});
 const authLink = setContext((_, { headers }) => {
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
 

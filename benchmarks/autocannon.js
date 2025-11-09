@@ -1,14 +1,18 @@
 const autocannon = require('autocannon');
 
 async function run() {
+  const target = process.env.API_URL || 'https://loanshark-api.onrender.com/graphql';
+
   const instance = autocannon({
-    url: 'http://localhost:4000/graphql',
+    url: target,
     method: 'POST',
     headers: {
       'content-type': 'application/json',
       'x-api-key': process.env.API_KEY || 'change-me'
     },
-    body: JSON.stringify({ query: '{ loans { id borrowerName } }' }),
+    body: JSON.stringify({
+      query: '{ loans { id borrowerName } }'
+    }),
     connections: 50,
     duration: 10
   });
