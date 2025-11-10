@@ -51,7 +51,13 @@ export default function Login() {
 
   const loginAdminViaRest = async () => {
     try {
-      const res = await fetch('/api/admin/login', {
+      // Derive backend origin from VITE_GRAPHQL_URL for production deployments (e.g., Vercel -> Render)
+      // Fallback to relative /api path for local dev where Vite proxy handles it
+      const graphqlUrl = import.meta.env.VITE_GRAPHQL_URL as string | undefined;
+      const backendOrigin = graphqlUrl ? new URL(graphqlUrl).origin : '';
+      const loginUrl = backendOrigin ? `${backendOrigin}/api/admin/login` : '/api/admin/login';
+
+      const res = await fetch(loginUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: adminEmail, password: adminPassword })
