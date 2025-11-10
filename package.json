@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "server:dev": "tsx server/src/index.ts",
     "server:build": "tsup server/src/index.ts --format esm --dts --out-dir dist/server --splitting",
+    "start": "node dist/server/index.js",
     "seed": "tsx server/src/scripts/seed.ts",
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
