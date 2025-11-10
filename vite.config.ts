@@ -10,20 +10,20 @@ export default defineConfig(({ mode }) => {
         host: '0.0.0.0',
         proxy: {
           '/graphql': {
-            target: 'http://localhost:4004',
+            target: 'http://localhost:4003',
             changeOrigin: true
           },
           '/health': {
-            target: 'http://localhost:4004',
+            target: 'http://localhost:4003',
             changeOrigin: true
           },
           '/render-test': {
-            target: 'http://localhost:4004',
+            target: 'http://localhost:4003',
             changeOrigin: true
           }
           ,
           '/api': {
-            target: 'http://localhost:4004',
+            target: 'http://localhost:4003',
             changeOrigin: true
           }
         }
