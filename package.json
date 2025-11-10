@@ -11,6 +11,7 @@
     "server:build": "tsup server/src/index.ts --format esm --dts --out-dir dist/server --splitting",
     "seed": "tsx server/src/scripts/seed.ts",
     "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
     "prisma:migrate": "prisma migrate deploy",
     "bench": "node benchmarks/autocannon.js",
     "test": "vitest"
