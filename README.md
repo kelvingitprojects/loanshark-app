@@ -55,5 +55,18 @@ Authorization:
 - Backend build: `npm run server:build`
 - CI: see `.github/workflows/ci.yml`
 
-Notes:
-- The backend uses SQLite by default (`DATABASE_URL=file:./dev.db`), so no Docker or external DB is required.
+### Deploy to Render (Backend)
+- Build Command: `yarn install && yarn prisma:generate && yarn prisma:migrate && yarn server:build`
+- Start Command: `yarn start`
+- Environment:
+  - `NODE_ENV=production`
+  - `DATABASE_URL=postgresql://<user>:<pass>@<host>:5432/loanshark?schema=public`
+  - `API_KEY=<secure value>`
+  - `ADMIN_EMAIL=<admin email>`
+  - `ADMIN_PASSWORD=<admin password>`
+- Persistent disk is not required when using Postgres.
+
+### Deploy to Vercel (Frontend)
+- Set `VITE_GRAPHQL_URL` to your Render GraphQL endpoint, e.g. `https://loanshark-app-1.onrender.com/graphql`.
+- Optionally set `VITE_API_KEY` to the same value as Render `API_KEY` to enable admin requests without login.
+- Redeploy the frontend.
