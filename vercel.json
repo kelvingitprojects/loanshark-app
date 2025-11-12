@@ -2,7 +2,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "routes": [
+    { "src": "/graphql", "methods": ["POST", "OPTIONS"], "dest": "https://loanshark-app-1.onrender.com/graphql" },
+    { "src": "/api/(.*)", "dest": "https://loanshark-app-1.onrender.com/api/$1" },
     { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
