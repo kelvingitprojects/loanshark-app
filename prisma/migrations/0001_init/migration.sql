@@ -1,5 +1,3 @@
-yarn run v1.22.22
-$ C:\Users\kelvin\Downloads\loanshark-app\node_modules\.bin\prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script
 -- CreateTable
 CREATE TABLE "Loan" (
     "id" TEXT NOT NULL,
@@ -84,5 +82,3 @@ ALTER TABLE "LoanRequest" ADD CONSTRAINT "LoanRequest_borrowerId_fkey" FOREIGN K
 
 -- AddForeignKey
 ALTER TABLE "AuditLog" ADD CONSTRAINT "AuditLog_loanRequestId_fkey" FOREIGN KEY ("loanRequestId") REFERENCES "LoanRequest"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
-Done in 1.44s.
