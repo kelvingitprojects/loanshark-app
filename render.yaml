@@ -4,7 +4,7 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: yarn install && yarn prisma:generate && yarn prisma:migrate && yarn server:build
+    buildCommand: yarn install && yarn prisma:generate && yarn prisma:migrate:resolve-rollback && yarn prisma:migrate:deploy && yarn server:build
     startCommand: yarn start
     autoDeploy: true
     envVars:

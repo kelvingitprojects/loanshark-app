@@ -15,6 +15,7 @@
     "prisma:push": "prisma db push",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:migrate:deploy": "prisma migrate deploy",
+    "prisma:migrate:resolve-rollback": "prisma migrate resolve --rolled-back 0001_init",
     "bench": "node benchmarks/autocannon.js",
     "test": "vitest"
   },
