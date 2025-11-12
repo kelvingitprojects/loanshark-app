@@ -6,7 +6,7 @@ loadEnv();
 const EnvSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   PORT: z.string().default("4000"),
-  DATABASE_URL: z.string().default("file:./dev.db"),
+  DATABASE_URL: z.string().default("postgresql://postgres:postgres@localhost:5432/loanshark?schema=public"),
   API_KEY: z.string().default(""),
   ADMIN_EMAIL: z.string().default("kelvin@gmail.com"),
   ADMIN_PASSWORD: z.string().default("kat@2025")

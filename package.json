@@ -29,6 +29,7 @@
     "@fastify/under-pressure": "latest",
     "@google/genai": "^0.15.0",
     "@prisma/client": "^6.19.0",
+    "graphql": "^16.9.0",
     "dataloader": "^2.2.3",
     "dotenv": "^16.4.5",
     "fastify": "latest",
