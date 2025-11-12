@@ -70,3 +70,8 @@ Authorization:
 - Set `VITE_GRAPHQL_URL` to your Render GraphQL endpoint, e.g. `https://loanshark-app-1.onrender.com/graphql`.
 - Optionally set `VITE_API_KEY` to the same value as Render `API_KEY` to enable admin requests without login.
 - Redeploy the frontend.
+
+### Cross-origin (CORS) configuration
+- The backend now supports `CORS_ORIGIN` (comma-separated) to allow only specific origins in production.
+- Example: `CORS_ORIGIN=https://your-frontend.vercel.app,https://www.yourdomain.com`
+- In development, or when `CORS_ORIGIN` is unset, all origins are allowed to simplify local testing.

@@ -11,6 +11,7 @@ import { errorHandler } from "./utils/errors";
 import healthRoutes from "./routes/health";
 import viewRoutes from "./routes/view";
 import authRoutes from "./routes/auth";
+import rootRoutes from "./routes/root";
 import { typeDefs } from "./graphql/schema";
 import { buildResolvers } from "./graphql/resolvers";
 import { LoanService } from "./services/loanService";
@@ -28,6 +29,7 @@ export async function buildServer() {
   await server.register(authPlugin);
 
   await server.register(healthRoutes);
+  await server.register(rootRoutes);
   await server.register(viewRoutes);
   await server.register(authRoutes);
 
